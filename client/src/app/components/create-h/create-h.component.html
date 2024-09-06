@@ -1,0 +1,47 @@
+<section>
+  <div class="flex">
+    <label for="bgColor">Bg Color</label>
+    <input id="bgColor" type="color" (input)="changeBgColor($event)" />
+  </div>
+  <div class="flex">
+    <label for="textColor">Text Color</label>
+    <input id="textColor" type="color" (input)="changeTextColor($event)" />
+  </div>
+  <div class="flex">
+    <label for="hName">H Name</label>
+    <input id="hName" type="text" (input)="hName = getValue($event)" />
+  </div>
+  <div class="flex">
+    <label for="hDate">H Date</label>
+    <input id="hDate" type="date" (input)="hDate = getValue($event)" />
+  </div>
+  <div class="flex">
+    <label for="hTime">H Time</label>
+    <input id="hTime" type="time" (input)="hTime = getValue($event)" />
+  </div>
+  <div>
+    <button (click)="formateTotalTime()">Get The rigth time</button>
+  </div>
+</section>
+
+<section>
+  <div class="flex">
+    <p>{{ this.bgColor }}</p>
+  </div>
+  <div class="flex">
+    <p>{{ this.textColor }}</p>
+  </div>
+  <div class="flex">
+    <p>{{ this.hName }}</p>
+  </div>
+  <div class="flex">
+    <p>{{ this.hDate }}</p>
+  </div>
+  <div class="flex">
+    <p>{{ this.hTime }}</p>
+  </div>
+
+  <div class="flex">
+    <p>F Total Time{{ this.fTotalTime }}</p>
+  </div>
+</section>

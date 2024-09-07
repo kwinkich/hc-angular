@@ -1,1 +1,9 @@
-<app-create-h />
+@if(isShowH === false ){
+<app-create-h
+  [isShowH]="isShowH"
+  (isShowHChange)="onIsShowHChange($event)"
+></app-create-h>
+} @if(isShowH === true ){
+
+<app-show-h></app-show-h>
+}

@@ -20,7 +20,7 @@
     <input id="hTime" type="time" (input)="hTime = getValue($event)" />
   </div>
   <div>
-    <button (click)="formateTotalTime()">Get The rigth time</button>
+    <button (click)="navShowH()">Get The rigth time</button>
   </div>
 </section>
 
@@ -39,22 +39,5 @@
   </div>
   <div class="flex">
     <p>{{ this.hTime }}</p>
-  </div>
-
-  <div class="flex">
-    <p>F Total Time {{ this.fTotalTime }}</p>
-  </div>
-
-  <div class="flex">
-    <p>Days {{ this.days }}</p>
-  </div>
-  <div class="flex">
-    <p>Hours {{ this.hours }}</p>
-  </div>
-  <div class="flex">
-    <p>Minutes {{ this.minutes }}</p>
-  </div>
-  <div class="flex">
-    <p>Seconds {{ this.seconds }}</p>
   </div>
 </section>

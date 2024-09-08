@@ -10,6 +10,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CreateHComponent {
   @Input() isShowH: boolean = false;
   @Output() isShowHChange = new EventEmitter<boolean>();
+  @Output() diffTimeChange = new EventEmitter<number>();
 
   public bgColor: string = '#000000';
   public textColor: string = '#000000';
@@ -40,30 +41,13 @@ export class CreateHComponent {
   public formateTotalTime() {
     let now = new Date().getTime();
     this.fTotalTime = new Date(`${this.hDate} ${this.hTime}`).getTime();
-    this.getLeftTime(this.fTotalTime - now);
+    return this.diffTimeChange.emit(this.fTotalTime - now);
   }
 
-  private getLeftTime(unixTime: number) {
-    if (typeof unixTime === 'number') {
-      if (unixTime > 0) {
-        this.days = Math.floor(unixTime / (1000 * 3600 * 24));
-        this.hours = Math.floor(
-          (unixTime % (1000 * 3600 * 24)) / (1000 * 3600)
-        );
-        this.minutes = Math.floor((unixTime % (1000 * 3600)) / (1000 * 60));
-        this.seconds = Math.floor((unixTime % (1000 * 60)) / 1000);
-
-        this.isShowH = true;
-        this.isShowHChange.emit(this.isShowH);
-
-        return `${this.days}d ${this.hours % 24}h ${this.minutes % 60}m ${
-          this.seconds % 60
-        }s`;
-      } else {
-        throw new Error('Date < 0');
-      }
-    } else {
-      throw new Error('Invalid date');
-    }
+  public navShowH() {
+    this.formateTotalTime();
+    this.isShowH = true;
+    localStorage.setItem('isShowH', 'true');
+    this.isShowHChange.emit(this.isShowH);
   }
 }

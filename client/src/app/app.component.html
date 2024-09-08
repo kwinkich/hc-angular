@@ -2,8 +2,8 @@
 <app-create-h
   [isShowH]="isShowH"
   (isShowHChange)="onIsShowHChange($event)"
-></app-create-h>
+  (diffTimeChange)="onCahangeDiffTime($event)"
+/>
 } @if(isShowH === true ){
-
-<app-show-h></app-show-h>
+<app-show-h [diffTime]="diffTime" />
 }

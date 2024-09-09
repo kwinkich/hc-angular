@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,8 +8,13 @@ import { RouterLink } from '@angular/router';
   templateUrl: './main-h.component.html',
   styleUrl: './main-h.component.scss',
 })
-export class MainHComponent {
-  public storageHolidays = localStorage.getItem('holidays');
+export class MainHComponent implements AfterViewInit {
+  private storageHolidays = localStorage.getItem('holidays');
   public parseHolidays =
     this.storageHolidays !== null ? JSON.parse(this.storageHolidays) : null;
+
+  ngAfterViewInit(): void {
+    document.body.style.backgroundColor = '#FFFFFF';
+    document.body.style.color = '#000000';
+  }
 }

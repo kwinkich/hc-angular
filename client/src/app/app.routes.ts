@@ -5,6 +5,11 @@ import { ShowHComponent } from './components/show-h/show-h.component';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'create',
+    pathMatch: 'full',
+  },
+  {
     path: 'main',
     component: MainHComponent,
   },

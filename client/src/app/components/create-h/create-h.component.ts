@@ -1,33 +1,23 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { Holiday } from '../../interfaces/holiday';
 
 @Component({
   selector: 'app-create-h',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './create-h.component.html',
   styleUrl: './create-h.component.scss',
 })
-export class CreateHComponent implements AfterViewInit {
-  public storageItems = localStorage.getItem('holidays');
-  public itemsArr: Holiday[] = [];
+export class CreateHComponent {
+  private storageItems = localStorage.getItem('holidays');
+  private itemsArr: Holiday[] = [];
   public bgColor: string = '#000000';
   public textColor: string = '#FFFFFF';
   public hName: string = 'Name';
   public hDate: string = new Date().toString();
   public hTime: string = '23:00';
-  public fTotalTime: any;
-
-  public days: number = 0;
-  public hours: number = 0;
-  public minutes: number = 0;
-  public seconds: number = 0;
-
-  ngAfterViewInit(): void {
-    document.body.style.backgroundColor = this.bgColor;
-    document.body.style.color = this.textColor;
-  }
 
   public getValue(event: Event): string {
     return (event.target as HTMLInputElement).value;
@@ -42,12 +32,6 @@ export class CreateHComponent implements AfterViewInit {
     this.textColor = (event.target as HTMLInputElement).value;
     document.body.style.color = this.textColor;
   }
-
-  // public formateTotalTime() {
-  //   let now = new Date().getTime();
-  //   this.fTotalTime = new Date(`${this.hDate} ${this.hTime}`).getTime();
-  //   return this.diffTimeChange.emit(this.fTotalTime - now);
-  // }
 
   public createNewHoliday() {
     const holiday: Holiday = {

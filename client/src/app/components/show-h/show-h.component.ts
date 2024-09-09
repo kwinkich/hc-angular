@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Holiday } from '../../interfaces/holiday';
 
@@ -9,14 +9,10 @@ import { Holiday } from '../../interfaces/holiday';
   templateUrl: './show-h.component.html',
   styleUrl: './show-h.component.scss',
 })
-export class ShowHComponent implements OnInit, OnDestroy {
-  public id: string | null = null;
-  public intervaLId!: ReturnType<typeof setInterval>;
-  public days: number = 0;
-  public hours: number = 0;
-  public minutes: number = 0;
-  public seconds: number = 0;
+export class ShowHComponent implements OnInit, AfterViewInit, OnDestroy {
+  constructor(private route: ActivatedRoute) {}
 
+  public id: string | null = null;
   public fTotalTime: any;
   public diffTime!: number;
 
@@ -25,18 +21,22 @@ export class ShowHComponent implements OnInit, OnDestroy {
     this.storageHolidays !== null ? JSON.parse(this.storageHolidays) : null;
   public findHoliday: Holiday | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+  public intervaLId!: ReturnType<typeof setInterval>;
+  public days: number = 0;
+  public hours: number = 0;
+  public minutes: number = 0;
+  public seconds: number = 0;
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.findHoliday = this.parseHolidays.find((item: any) => {
       return item.id === this.id;
     });
-    console.log(this.findHoliday);
+
     this.formateTotalTime();
+    this.getLeftTime(this.diffTime);
 
     this.intervaLId = setInterval(() => {
-      console.log(this.diffTime);
       if (this.diffTime > 900) {
         this.diffTime -= 1000;
         this.getLeftTime(this.diffTime);
@@ -46,10 +46,19 @@ export class ShowHComponent implements OnInit, OnDestroy {
         this.hours = 0;
         this.minutes = 0;
         this.seconds = 0;
-        console.log('ends');
         clearInterval(this.intervaLId);
       }
     }, 1000);
+  }
+
+  ngAfterViewInit(): void {
+    document.body.style.backgroundColor =
+      this.findHoliday?.bgColor || '#000000';
+    document.body.style.color = this.findHoliday?.textColor || '#FFFFFF';
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervaLId);
   }
 
   public formateTotalTime() {
@@ -59,10 +68,6 @@ export class ShowHComponent implements OnInit, OnDestroy {
     ).getTime();
     this.diffTime = this.fTotalTime - now;
     return this.diffTime;
-  }
-
-  ngOnDestroy(): void {
-    clearInterval(this.intervaLId);
   }
 
   private getLeftTime(unixTime: number) {

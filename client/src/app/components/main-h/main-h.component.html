@@ -1,7 +1,11 @@
-@for(holiday of parseHolidays; track holiday.id){
-<a [routerLink]="['/holiday', holiday.id]">
-  <p>{{ holiday.name }}</p>
-  <p>{{ holiday.date }}</p>
-  <p>{{ holiday.time }}</p>
-</a>
-}
+<a [routerLink]="'/create'" class="p1 mb-20">Create New Holiday</a>
+
+<section class="h-cards">
+  @for(holiday of parseHolidays; track holiday.id){
+  <a [routerLink]="['/holiday', holiday.id]" class="h-card">
+    <p class="p1">{{ holiday.name }}</p>
+    <p class="p2">{{ holiday.date }}</p>
+    <p class="p3">{{ holiday.time }}</p>
+  </a>
+  }
+</section>

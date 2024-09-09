@@ -1,0 +1,7 @@
+@for(holiday of parseHolidays; track holiday.id){
+<a [routerLink]="['/holiday', holiday.id]">
+  <p>{{ holiday.name }}</p>
+  <p>{{ holiday.date }}</p>
+  <p>{{ holiday.time }}</p>
+</a>
+}

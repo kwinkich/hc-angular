@@ -10,7 +10,7 @@
     </a>
     <div class="buttons">
       <button (click)="deleteHoliday(holiday.id)">Delete</button>
-      <button disabled>Edit</button>
+      <button [routerLink]="['/edit', holiday.id]">Edit</button>
     </div>
   </div>
   }

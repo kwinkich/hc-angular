@@ -1,0 +1,61 @@
+<section class="flex20">
+  <div class="flex">
+    <label for="bgColor">Bg Color</label>
+    <input
+      [value]="bgColor"
+      id="bgColor"
+      type="color"
+      (input)="changeBgColor($event)"
+    />
+  </div>
+  <div class="flex">
+    <label for="textColor">Text Color</label>
+    <input
+      [value]="textColor"
+      id="textColor"
+      type="color"
+      (input)="changeTextColor($event)"
+    />
+  </div>
+  <div class="flex">
+    <label for="hName">H Name</label>
+    <input
+      [value]="hName"
+      id="hName"
+      type="text"
+      (input)="hName = getValue($event, 'name')"
+    />
+    <p class="wrong" *ngIf="!vaildHName">wrong</p>
+  </div>
+  <div class="flex">
+    <label for="hDate">H Date</label>
+    <input
+      [value]="hDate"
+      id="hDate"
+      type="date"
+      (input)="hDate = getValue($event, 'date')"
+    />
+    <p class="wrong" *ngIf="!vaildHDate">wrong</p>
+  </div>
+  <div class="flex">
+    <label for="hTime">H Time</label>
+    <input
+      [value]="hTime"
+      id="hTime"
+      type="time"
+      (input)="hTime = getValue($event, 'time')"
+    />
+    <p class="wrong" *ngIf="!vaildHTime">wrong</p>
+  </div>
+  <div>
+    <button
+      (click)="updateHoliday()"
+      [disabled]="!vaildHName || !vaildHDate || !vaildHTime"
+    >
+      Update
+    </button>
+  </div>
+  <div>
+    <a [routerLink]="['/main']">Cancel</a>
+  </div>
+</section>

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { CreateHComponent } from './components/create-h/create-h.component';
+import { EditHComponent } from './components/edit-h/edit-h.component';
 import { MainHComponent } from './components/main-h/main-h.component';
 import { ShowHComponent } from './components/show-h/show-h.component';
 
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'holiday/:id',
     component: ShowHComponent,
+  },
+  {
+    path: 'edit/:id',
+    component: EditHComponent,
   },
 ];

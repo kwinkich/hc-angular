@@ -32,4 +32,14 @@ export class HolidaysStorageService {
     localStorage.setItem('holidays', JSON.stringify(this.holidays));
     return holiday;
   }
+
+  public updateH(holidayId: string, uHoliday: Holiday) {
+    this.holidays = this.holidays.map((h) =>
+      h.id === holidayId ? { ...h, ...uHoliday } : h
+    );
+
+    localStorage.setItem('holidays', JSON.stringify(this.holidays));
+
+    return console.log(this.holidays);
+  }
 }

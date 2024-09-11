@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { Holiday } from '../../interfaces/holiday';
+import { HolidaysStorageService } from '../../services/holidays-storage.service';
 
 @Component({
   selector: 'app-create-h',
@@ -11,6 +12,8 @@ import { Holiday } from '../../interfaces/holiday';
   styleUrl: './create-h.component.scss',
 })
 export class CreateHComponent {
+  constructor(private holidaysService: HolidaysStorageService) {}
+
   private storageItems = localStorage.getItem('holidays');
   private itemsArr: Holiday[] = [];
   public bgColor: string = '#000000';
@@ -43,23 +46,12 @@ export class CreateHComponent {
       textColor: this.textColor,
     };
 
-    if (!this.storageItems) {
-      this.itemsArr.push(holiday);
-      let holidayJSON = JSON.stringify(this.itemsArr);
-      localStorage.setItem('holidays', holidayJSON);
-    } else {
-      this.itemsArr = JSON.parse(this.storageItems);
-      this.itemsArr.push(holiday);
-      let holidayJSON = JSON.stringify(this.itemsArr);
-      localStorage.setItem('holidays', holidayJSON);
-    }
-
     this.bgColor = '#000000';
     this.textColor = '#FFFFFF';
     this.hName = 'Name';
     this.hDate = new Date().toString();
     this.hTime = '23:00';
 
-    return holiday;
+    return this.holidaysService.addH(holiday);
   }
 }

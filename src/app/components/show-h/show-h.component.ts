@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Holiday } from '../../interfaces/holiday';
+import { HolidaysStorageService } from '../../services/holidays-storage.service';
 
 @Component({
   selector: 'app-show-h',
@@ -10,16 +11,16 @@ import { Holiday } from '../../interfaces/holiday';
   styleUrl: './show-h.component.scss',
 })
 export class ShowHComponent implements OnInit, AfterViewInit, OnDestroy {
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private holidaysService: HolidaysStorageService
+  ) {}
 
   public id: string | null = null;
   public fTotalTime: any;
   public diffTime!: number;
 
-  public storageHolidays = localStorage.getItem('holidays');
-  public parseHolidays =
-    this.storageHolidays !== null ? JSON.parse(this.storageHolidays) : null;
-  public findHoliday: Holiday | null = null;
+  public findHoliday: Holiday | undefined = undefined;
 
   public intervaLId!: ReturnType<typeof setInterval>;
   public days: number = 0;
@@ -29,7 +30,7 @@ export class ShowHComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.findHoliday = this.parseHolidays.find((item: any) => {
+    this.findHoliday = this.holidaysService.holidays.find((item: any) => {
       return item.id === this.id;
     });
 

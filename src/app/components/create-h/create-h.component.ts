@@ -15,8 +15,8 @@ import { HolidaysStorageService } from '../../services/holidays-storage.service'
 export class CreateHComponent {
   constructor(private holidaysService: HolidaysStorageService) {}
 
-  public bgColor: string = '#FFFFFF';
-  public textColor: string = '#000000';
+  public bgColor: string = '#001b15';
+  public textColor: string = '#befbff';
   public hName: string = 'Name';
   public hDate: string = '2025-01-01';
   public hTime: string = '23:00';
@@ -67,10 +67,12 @@ export class CreateHComponent {
       textColor: this.textColor,
     };
 
-    this.bgColor = '#FFFFFF';
-    this.textColor = '#000000';
+    document.body.style.backgroundColor = '#001b15';
+    document.body.style.color = '#befbff';
+    this.bgColor = '#001b15';
+    this.textColor = '#befbff';
     this.hName = 'Name';
-    this.hDate = '';
+    this.hDate = '2025-01-01';
     this.hTime = '23:00';
 
     return this.holidaysService.addH(holiday);

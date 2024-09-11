@@ -22,7 +22,7 @@ export class MainHComponent implements AfterViewInit {
     this.holidaysService.deleteH(id);
   }
   ngAfterViewInit(): void {
-    document.body.style.backgroundColor = '#FFFFFF';
-    document.body.style.color = '#000000';
+    document.body.style.backgroundColor = '#001b15';
+    document.body.style.color = '#befbff';
   }
 }

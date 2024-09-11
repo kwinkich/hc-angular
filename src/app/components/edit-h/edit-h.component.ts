@@ -87,9 +87,8 @@ export class EditHComponent implements OnInit {
       bgColor: this.bgColor || '',
       textColor: this.textColor || '',
     };
-
-    console.log(uHoliday);
-
     this.holidaysService.updateH(this.editH?.id || '', uHoliday);
+
+    return alert('Update was successful');
   }
 }

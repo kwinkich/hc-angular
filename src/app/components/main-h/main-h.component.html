@@ -1,17 +1,19 @@
-<a [routerLink]="'/create'" class="p1 mb-20">Create New Holiday</a>
+<section class="contnet flex">
+  <a [routerLink]="'/create'" class="p1 mb-20">Create New Holiday</a>
 
-<section class="h-cards">
-  @for(holiday of parseHolidays; track holiday.id){
-  <div class="h-card">
-    <a [routerLink]="['/holiday', holiday.id]">
-      <p class="p1">{{ holiday.name }}</p>
-      <p class="p2">{{ holiday.date }}</p>
-      <p class="p3">{{ holiday.time }}</p>
-    </a>
-    <div class="buttons">
-      <button (click)="deleteHoliday(holiday.id)">Delete</button>
-      <button [routerLink]="['/edit', holiday.id]">Edit</button>
+  <div class="h-cards">
+    @for(holiday of parseHolidays; track holiday.id){
+    <div class="h-card">
+      <a [routerLink]="['/holiday', holiday.id]" class="flex-p">
+        <p class="p1">{{ holiday.name }}</p>
+        <p class="p2">{{ holiday.date }}</p>
+        <p class="p3">{{ holiday.time }}</p>
+      </a>
+      <div class="buttons">
+        <button (click)="deleteHoliday(holiday.id)">Delete</button>
+        <button [routerLink]="['/edit', holiday.id]">Edit</button>
+      </div>
     </div>
+    }
   </div>
-  }
 </section>

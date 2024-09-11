@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Holiday } from '../../interfaces/holiday';
 import { HolidaysStorageService } from '../../services/holidays-storage.service';
 
 @Component({
   selector: 'app-show-h',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './show-h.component.html',
   styleUrl: './show-h.component.scss',
 })

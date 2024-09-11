@@ -18,3 +18,14 @@ a {
   font-size: 14px;
   color: #ff0000;
 }
+
+input {
+  padding: 5px;
+  border: 0px;
+  outline: none;
+  border-radius: 5px;
+}
+
+input[type="color"] {
+  padding: 0px;
+}

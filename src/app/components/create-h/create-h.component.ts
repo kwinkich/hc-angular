@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
@@ -7,22 +8,42 @@ import { HolidaysStorageService } from '../../services/holidays-storage.service'
 @Component({
   selector: 'app-create-h',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgIf],
   templateUrl: './create-h.component.html',
   styleUrl: './create-h.component.scss',
 })
 export class CreateHComponent {
   constructor(private holidaysService: HolidaysStorageService) {}
 
-  private storageItems = localStorage.getItem('holidays');
-  private itemsArr: Holiday[] = [];
-  public bgColor: string = '#000000';
-  public textColor: string = '#FFFFFF';
+  public bgColor: string = '#FFFFFF';
+  public textColor: string = '#000000';
   public hName: string = 'Name';
-  public hDate: string = new Date().toString();
+  public hDate: string = '2025-01-01';
   public hTime: string = '23:00';
 
-  public getValue(event: Event): string {
+  public vaildHName: boolean = true;
+  public vaildHDate: boolean = true;
+  public vaildHTime: boolean = true;
+
+  public getValue(event: Event, name: string): string {
+    switch (name) {
+      case 'name': {
+        this.vaildHName =
+          (event.target as HTMLInputElement).value.trim() !== '' ? true : false;
+        break;
+      }
+      case 'date': {
+        this.vaildHDate =
+          (event.target as HTMLInputElement).value.trim() !== '' ? true : false;
+        break;
+      }
+      case 'time': {
+        this.vaildHTime =
+          (event.target as HTMLInputElement).value.trim() !== '' ? true : false;
+        break;
+      }
+    }
+
     return (event.target as HTMLInputElement).value;
   }
 
@@ -46,10 +67,10 @@ export class CreateHComponent {
       textColor: this.textColor,
     };
 
-    this.bgColor = '#000000';
-    this.textColor = '#FFFFFF';
+    this.bgColor = '#FFFFFF';
+    this.textColor = '#000000';
     this.hName = 'Name';
-    this.hDate = new Date().toString();
+    this.hDate = '';
     this.hTime = '23:00';
 
     return this.holidaysService.addH(holiday);

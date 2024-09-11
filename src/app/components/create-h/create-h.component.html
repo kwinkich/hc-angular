@@ -23,8 +23,9 @@
       [value]="hName"
       id="hName"
       type="text"
-      (input)="hName = getValue($event)"
+      (input)="hName = getValue($event, 'name')"
     />
+    <p class="wrong" *ngIf="!vaildHName">wrong</p>
   </div>
   <div class="flex">
     <label for="hDate">H Date</label>
@@ -32,8 +33,9 @@
       [value]="hDate"
       id="hDate"
       type="date"
-      (input)="hDate = getValue($event)"
+      (input)="hDate = getValue($event, 'date')"
     />
+    <p class="wrong" *ngIf="!vaildHDate">wrong</p>
   </div>
   <div class="flex">
     <label for="hTime">H Time</label>
@@ -41,11 +43,17 @@
       [value]="hTime"
       id="hTime"
       type="time"
-      (input)="hTime = getValue($event)"
+      (input)="hTime = getValue($event, 'time')"
     />
+    <p class="wrong" *ngIf="!vaildHTime">wrong</p>
   </div>
   <div>
-    <button (click)="createNewHoliday()">Get The rigth time</button>
+    <button
+      (click)="createNewHoliday()"
+      [disabled]="!vaildHName || !vaildHDate || !vaildHTime"
+    >
+      Get The rigth time
+    </button>
   </div>
   <div>
     <a [routerLink]="['/main']">Back to Main</a>

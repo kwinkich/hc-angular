@@ -6,9 +6,15 @@
 
 .flex {
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 
 a {
   color: inherit;
+}
+
+.wrong {
+  font-size: 14px;
+  color: #ff0000;
 }

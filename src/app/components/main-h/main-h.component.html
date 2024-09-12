@@ -1,6 +1,25 @@
 <section class="contnet flex">
   <a [routerLink]="'/create'" class="p1 mb-20">Create New Holiday</a>
-
+  <div class="mb-20">
+    <label class="lable-json" for="upload-json">Select JSON</label>
+    <input
+      class="mb-20 input-json"
+      type="file"
+      name="upload-json"
+      id="upload-json"
+      (change)="uploadFile($event)"
+    />
+  </div>
+  <div class="mb-20">
+    <button
+      type="button"
+      class="custom-btn"
+      (click)="downloadRequestObject()"
+      [disabled]="parseHolidays.length == 0"
+    >
+      Download JSON
+    </button>
+  </div>
   <div class="h-cards">
     @for(holiday of parseHolidays; track holiday.id){
     <div class="h-card">

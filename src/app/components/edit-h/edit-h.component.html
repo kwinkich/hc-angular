@@ -1,4 +1,4 @@
-<section class="flex20 contnet">
+<section class="flex20 edit-c">
   <div class="flex">
     <label for="bgColor">Bg Color</label>
     <input
@@ -49,6 +49,7 @@
   </div>
   <div>
     <button
+      class="button-main"
       (click)="updateHoliday()"
       [disabled]="!vaildHName || !vaildHDate || !vaildHTime"
     >

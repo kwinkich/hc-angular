@@ -1,6 +1,7 @@
-<section class="flex20 contnet">
+<section class="flex20 create-c">
+  <h3 class="h3 mb-40">Create Timer</h3>
   <div class="flex">
-    <label for="bgColor">Bg Color</label>
+    <label class="input-label" for="bgColor">Bg Color</label>
     <input
       [value]="bgColor"
       id="bgColor"
@@ -9,7 +10,7 @@
     />
   </div>
   <div class="flex">
-    <label for="textColor">Text Color</label>
+    <label class="input-label" for="textColor">Text Color</label>
     <input
       [value]="textColor"
       id="textColor"
@@ -18,44 +19,45 @@
     />
   </div>
   <div class="flex">
-    <label for="hName">H Name</label>
+    <label class="input-label" for="hName">H Name</label>
     <input
       [value]="hName"
       id="hName"
       type="text"
+      placeholder="Name"
       (input)="hName = getValue($event, 'name')"
     />
     <p class="wrong" *ngIf="!vaildHName">wrong</p>
   </div>
   <div class="flex">
-    <label for="hDate">H Date</label>
+    <label class="input-label" for="hDate">H Date</label>
     <input
       [value]="hDate"
       id="hDate"
       type="date"
+      placeholder="2025-01-01"
       (input)="hDate = getValue($event, 'date')"
     />
     <p class="wrong" *ngIf="!vaildHDate">wrong</p>
   </div>
   <div class="flex">
-    <label for="hTime">H Time</label>
+    <label class="input-label" for="hTime">H Time</label>
     <input
       [value]="hTime"
       id="hTime"
       type="time"
+      placeholder="16:00"
       (input)="hTime = getValue($event, 'time')"
     />
     <p class="wrong" *ngIf="!vaildHTime">wrong</p>
   </div>
   <div>
     <button
+      class="button-main"
       (click)="createNewHoliday()"
       [disabled]="!vaildHName || !vaildHDate || !vaildHTime"
     >
       Create
     </button>
-  </div>
-  <div>
-    <a [routerLink]="['/main']">Back to Main</a>
   </div>
 </section>

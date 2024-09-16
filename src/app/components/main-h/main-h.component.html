@@ -1,38 +1,55 @@
-<section class="contnet flex">
-  <a [routerLink]="'/create'" class="p1 mb-20">Create New Holiday</a>
-  <div class="mb-20">
-    <label class="lable-json" for="upload-json">Select JSON</label>
-    <input
-      class="mb-20 input-json"
-      type="file"
-      name="upload-json"
-      id="upload-json"
-      (change)="uploadFile($event)"
-    />
-  </div>
-  <div class="mb-20">
-    <button
-      type="button"
-      class="custom-btn"
-      (click)="downloadRequestObject()"
-      [disabled]="parseHolidays.length == 0"
-    >
-      Download JSON
-    </button>
+<section class="flex main-c">
+  <h3 class="h3 mb-20">Main</h3>
+  <div class="buttons-control mb-40">
+    <div>
+      <label class="lable-json" for="upload-json">Select JSON</label>
+      <input
+        class="mb-20 input-json"
+        type="file"
+        name="upload-json"
+        id="upload-json"
+        (change)="uploadFile($event)"
+      />
+    </div>
+    <div>
+      <button
+        type="button"
+        class="custom-btn"
+        (click)="downloadRequestObject()"
+        [disabled]="parseHolidays.length == 0"
+      >
+        Download JSON
+      </button>
+    </div>
   </div>
   <div class="h-cards">
-    @for(holiday of parseHolidays; track holiday.id){
+    @if (parseHolidays.length !== 0){ @for(holiday of parseHolidays; track
+    holiday.id){
     <div class="h-card">
       <a [routerLink]="['/holiday', holiday.id]" class="flex-p">
         <p class="p1">{{ holiday.name }}</p>
-        <p class="p2">{{ holiday.date }}</p>
-        <p class="p3">{{ holiday.time }}</p>
+        <div class="h-card-numbers">
+          <p class="p2">{{ holiday.date }}</p>
+          <p class="p3">{{ holiday.time }}</p>
+        </div>
       </a>
       <div class="buttons">
-        <button (click)="deleteHoliday(holiday.id)">Delete</button>
-        <button [routerLink]="['/edit', holiday.id]">Edit</button>
+        <button class="button-edit" [routerLink]="['/edit', holiday.id]">
+          <img src="./assets/Edit.svg" alt="Edit" />
+        </button>
+        <button class="button-delete" (click)="deleteHoliday(holiday.id)">
+          <img src="./assets/delete.svg" alt="delete" />
+        </button>
       </div>
     </div>
+    } } @else {
+    <p class="p3">
+      You don't have any holidays. <br />
+      Please create holiday
+    </p>
     }
   </div>
+  <a [routerLink]="'/create'" class="button-create-h mt-40"
+    >Create New Holiday</a
+  >
 </section>

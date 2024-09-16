@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --bg-change-color: #18181b;
+  --main-change-color: #befbff;
+  --wrong: #ef4444;
+  --edit: #1068b9;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -16,6 +25,13 @@ a:focus,
 a:active {
   outline: none;
 }
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
 nav,
 footer,
 header,
@@ -24,8 +40,8 @@ aside {
 }
 html,
 body {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   font-size: 100%;
   line-height: 1;
   font-size: 14px;
@@ -33,10 +49,11 @@ body {
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 a {
   color: inherit;
-
+  text-decoration: none;
   background-color: transparent;
 }
 b,
@@ -81,24 +98,90 @@ textarea {
 }
 
 body {
-  background-color: #001b15;
+  font-family: "Raleway", sans-serif;
+  background-color: #18181b;
   color: #befbff;
   font-size: 18px;
+  font-variant-numeric: lining-nums;
+  -moz-font-feature-settings: "lnum" 1;
+  -moz-font-feature-settings: "lnum=1";
+  -ms-font-feature-settings: "lnum" 1;
+  -o-font-feature-settings: "lnum" 1;
+  -webkit-font-feature-settings: "lnum" 1;
+  font-feature-settings: "lnum" 1;
 }
 
-.contnet {
-  max-width: 480px;
-  padding: 20px 0px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+a {
+  color: inherit;
 }
 
-button {
-  padding: 6px 24px;
-  border: 0;
-  border-radius: 6px;
-  outline: none;
+input {
+  padding: 15px;
+  border: 2px solid var(--main-change-color);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--main-change-color);
+}
+
+input::placeholder {
+  color: var(--main-change-color);
+}
+
+input[type="color"] {
+  padding: 0px !important;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+input[type="time"]::-webkit-inner-spin-button,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.h3 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.input-label {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.wrong {
+  font-size: 14px;
+  color: #ff0000;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.button-main {
+  cursor: pointer;
+  padding: 15px 50px;
+  border: 2px dashed var(--main-change-color);
+  color: var(--main-change-color);
+  background: none;
+  transition: all 0.4s ease-in-out;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.button-main:hover {
+  background: var(--main-change-color);
+  color: var(--bg-change-color);
+}
+
+.button-main:disabled {
+  cursor: not-allowed;
+}
+
+.mt-40 {
+  margin-top: 40px;
 }

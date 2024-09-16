@@ -1,0 +1,36 @@
+.header-c {
+  display: none;
+  width: 90vw;
+  padding: 25px;
+  justify-content: space-between;
+}
+
+.h-navs {
+}
+.h-ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.sidebar__li {
+}
+.sidebar__link {
+}
+
+@media (max-width: 720px) {
+  .header-c {
+    display: flex;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-c {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .h-ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

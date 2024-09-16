@@ -1,16 +1,15 @@
-.create-c {
+.profile-c {
   margin-top: 100px;
-  width: 280px;
 }
-
-.flex20 {
+.h3 {
+}
+.profile-metrics {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 8px;
 }
-
-.flex {
+.metric-flex {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 8px;
 }

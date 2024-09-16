@@ -25,8 +25,10 @@ export class MainHComponent implements AfterViewInit {
     this.holidaysService.deleteH(id);
   }
   ngAfterViewInit(): void {
-    document.body.style.backgroundColor = '#001b15';
+    document.body.style.backgroundColor = '#18181b';
     document.body.style.color = '#befbff';
+    document.body.style.setProperty('--bg-change-color', '#18181b');
+    document.body.style.setProperty('--main-change-color', '#befbff');
   }
 
   public uploadFile(event: any) {

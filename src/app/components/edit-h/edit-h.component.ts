@@ -32,6 +32,14 @@ export class EditHComponent implements OnInit {
     );
     document.body.style.backgroundColor = this.editH?.bgColor || '#FFFFFF';
     document.body.style.color = this.editH?.textColor || '#000000';
+    document.body.style.setProperty(
+      '--bg-change-color',
+      this.editH?.bgColor || '#FFFFFF'
+    );
+    document.body.style.setProperty(
+      '--main-change-color',
+      this.editH?.textColor || '#000000'
+    );
 
     this.bgColor = this.editH?.bgColor;
     this.textColor = this.editH?.textColor;
@@ -71,24 +79,31 @@ export class EditHComponent implements OnInit {
   public changeBgColor(event: Event) {
     this.bgColor = (event.target as HTMLInputElement).value;
     document.body.style.backgroundColor = this.bgColor;
+    document.body.style.setProperty('--bg-change-color', this.bgColor);
   }
 
   public changeTextColor(event: Event) {
     this.textColor = (event.target as HTMLInputElement).value;
     document.body.style.color = this.textColor;
+    document.body.style.setProperty('--main-change-color', this.textColor);
   }
 
   public updateHoliday() {
-    const uHoliday: Holiday = {
-      id: this.editH?.id || '',
-      name: this.hName || '',
-      date: this.hDate || '',
-      time: this.hTime || '',
-      bgColor: this.bgColor || '',
-      textColor: this.textColor || '',
-    };
-    this.holidaysService.updateH(this.editH?.id || '', uHoliday);
+    if (this.hName === '' || this.hDate === '' || this.hTime === '') {
+      alert('Please fill in all fields');
+      return;
+    } else {
+      const uHoliday: Holiday = {
+        id: this.editH?.id || '',
+        name: this.hName || '',
+        date: this.hDate || '',
+        time: this.hTime || '',
+        bgColor: this.bgColor || '',
+        textColor: this.textColor || '',
+      };
+      this.holidaysService.updateH(this.editH?.id || '', uHoliday);
 
-    return alert('Update was successful');
+      return alert('Update was successful');
+    }
   }
 }

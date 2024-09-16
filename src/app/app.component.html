@@ -1,1 +1,7 @@
-<router-outlet />
+<div class="flex">
+  <app-header *ngIf="!(hideSidebar$ | async)" />
+  <app-sidebar *ngIf="!(hideSidebar$ | async)"></app-sidebar>
+  <div class="flex-route">
+    <router-outlet />
+  </div>
+</div>

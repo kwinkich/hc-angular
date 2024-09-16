@@ -1,3 +1,9 @@
+/* Основные стили */
+.main-c {
+  margin-top: 100px;
+  max-width: 1100px;
+}
+
 .flex {
   display: flex;
   flex-direction: column;
@@ -5,24 +11,33 @@
 }
 
 .h-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 400px));
+  gap: 30px;
 }
+
 .h-card {
-  width: 100%;
+  position: relative;
   display: block;
   padding: 24px;
   border: 2px dashed #befbff;
-  border-radius: 12px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+.h-card-numbers {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .flex-p {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 5px;
 }
 
@@ -37,20 +52,17 @@
   color: #b5cecf;
 }
 
-a,
-a:hover,
-a:focus {
-  text-decoration: none;
-}
-
 .mb-20 {
   display: block;
   margin-bottom: 20px;
 }
 
 .buttons {
+  bottom: -16px;
+  right: -16px;
+  position: absolute;
   display: flex;
-  gap: 20px;
+  gap: 8px;
 }
 
 .lable-json {
@@ -65,7 +77,7 @@ a:focus {
 .custom-btn {
   cursor: pointer;
   color: #000807;
-  background-color: #83c7cc;
+  background-color: var(--main-change-color);
   padding: 6px 24px;
   font-weight: 600;
   border-radius: 3px;
@@ -81,4 +93,82 @@ a:focus {
   opacity: 0;
   z-index: -1;
   position: absolute;
+}
+
+.button-delete {
+  cursor: pointer;
+  padding: 7px 9px 4px 9px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--wrong);
+}
+
+.button-edit {
+  cursor: pointer;
+  padding: 7px 7px 2px 9px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--edit);
+}
+
+.buttons-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-create-h {
+  border: 2px dashed var(--main-change-color);
+  padding: 15px 50px;
+  transition: all 0.4s ease-in-out;
+}
+
+.button-create-h:hover {
+  background-color: var(--main-change-color);
+  color: var(--bg-change-color);
+}
+
+/* Медиазапросы для адаптивности */
+
+/* На экранах до 1200px */
+@media (max-width: 1210px) {
+  .h-cards {
+    grid-template-columns: repeat(2, 320px);
+  }
+}
+
+/* На экранах до 992px */
+@media (max-width: 1040px) {
+  .h-cards {
+    grid-template-columns: repeat(1, 400px);
+  }
+}
+
+/* На экранах до 768px */
+@media (max-width: 770px) {
+  .h-cards {
+    grid-template-columns: repeat(1, 340px);
+  }
+}
+
+@media (max-width: 440px) {
+  .h-cards {
+    grid-template-columns: repeat(1, 280px);
+  }
+
+  .buttons-control {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .flex-p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .h-card-numbers {
+    align-items: flex-start;
+  }
 }
